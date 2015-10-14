@@ -1,0 +1,14 @@
+# IDE настройки
+.idea
+*.iml
+
+node_modules
+.DS_Store
+Thumbs.db
+# etc
+*.log
+*.tmp
+
+# NetBeans IDE
+/nbproject/
+
