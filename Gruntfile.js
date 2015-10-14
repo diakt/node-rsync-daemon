@@ -24,14 +24,14 @@ if (!args.remote) {
 
 var local = args.local;
 var remote = args.host + ':' + args.remote;
-var exclude = args.exclude || '--exclude={.git/,.DS_Store,.idea,node_modules/,.bower,.npm,.iml} ';
+var exclude = args.exclude || '{.git/,.DS_Store,.idea,node_modules/,.bower,.npm,.iml}';
 
 var rsyncArgs = [
   '-azP',
   '--delete',
   local,
   remote,
-  exclude
+  '--exclude=' + exclude
 ];
 
 console.info('Starting ' + 'rsync ' + rsyncArgs.join(' ') + '...');

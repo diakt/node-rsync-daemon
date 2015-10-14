@@ -1,7 +1,6 @@
 {
   "name": "node-rsync-daemon",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node ./node_modules/grunt-cli/bin/grunt"
   },
