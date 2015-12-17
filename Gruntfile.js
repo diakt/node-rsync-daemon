@@ -12,25 +12,22 @@ var args = process.argv.reduce((params, arg) => {
   return params;
 }, {});
 
-if (!args.host) {
-  throw new Error('Не указан host, e.g.\n--host=johndaoe@johndaoe.net');
+if (!args.from) {
+  throw new Error('Не указан --form path, e.g.\n --from=~/work/');
 }
-if (!args.local) {
-  throw new Error('Не указана local path, e.g.\n --local=~/work/');
-}
-if (!args.remote) {
-  throw new Error('Не указана remote path, e.g.\n --remote=~work');
+if (!args.to) {
+  throw new Error('Не указана remote path, e.g.\n --to=johndaoe@johndaoe.net:~work');
 }
 
-var local = args.local;
-var remote = args.host + ':' + args.remote;
+var from = args.from;
+var to = args.to;
 var exclude = args.exclude || '{.git/,.DS_Store,.idea,node_modules/,.bower,.npm,.iml}';
 
 var rsyncArgs = [
   '-azP',
   '--delete',
-  local,
-  remote,
+  from,
+  to,
   '--exclude={' + exclude + '}'
 ];
 
@@ -43,7 +40,7 @@ module.exports = (grunt) => {
 
     var iteraiton = 0;
 
-    (function execSync() {
+    (function execSync () {
       exec('rsync ' + rsyncArgs.join(' '), function (error, stdout, stderr) {
         console.log('Iteration: ' + ++iteraiton + ' at ' + (new Date().toLocaleString()));
         console.log(stdout);
@@ -58,4 +55,3 @@ module.exports = (grunt) => {
     }());
   });
 };
-
