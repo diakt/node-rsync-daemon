@@ -31,7 +31,7 @@ var rsyncArgs = [
   '--delete',
   local,
   remote,
-  '--exclude=' + exclude
+  '--exclude={' + exclude + '}'
 ];
 
 console.info('Starting ' + 'rsync ' + rsyncArgs.join(' ') + '...');
